@@ -24,15 +24,15 @@ draw = img.copy()
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 blur = cv2.GaussianBlur(gray,(3,3),0)
 canny = cv2.Canny(gray,75,200)
-cv2.imshow('scan',canny)
-cv2.waitKey(0)
+#cv2.imshow('scan',canny)
+#cv2.waitKey(0)
 
 cnts, _ = cv2.findContours(canny.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
 print(len(cnts))
 cv2.drawContours(draw, cnts, -1, (0,255), 0)
-cv2.imshow('scan', draw)
-cv2.waitKey(0)
+#cv2.imshow('scan', draw)
+#cv2.waitKey(0)
 
 cnts = sorted(cnts, key = cv2.contourArea, reverse= True)[:5]
 for c in cnts:
@@ -44,8 +44,8 @@ pts = verticles.reshape(4, 2)
 for x, y in pts:
     cv2.circle(draw, (x,y) , 10 , (0,255,0), -1)
     
-cv2.imshow('scan', draw)
-cv2.waitKey(0)
+#cv2.imshow('scan', draw)
+#cv2.waitKey(0)
 merged = np.hstack((img, draw))
 
 sm = pts.sum(axis = 1)
